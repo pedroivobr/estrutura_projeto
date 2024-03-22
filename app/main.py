@@ -1,5 +1,10 @@
-from pipeline import extract
+from pipeline.extract import ler_arquivos_excel
+from pipeline.transform import concat_dataframes
+from pipeline.load import load_excel
 
-listas_de_df = extract.ler_arquivos_excel("data/input")
+if __name__ == "__main__":
+    listas_de_df = ler_arquivos_excel("data/input")
 
-print(listas_de_df)
+    df = concat_dataframes(listas_de_df)
+
+    load_excel(df, 'data/output', 'output')
